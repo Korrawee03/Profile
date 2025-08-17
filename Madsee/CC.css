@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .circle-shadow {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-color: #00d4ff;
+    border-radius: 50%;
+    left: -12px;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .circle-main {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .letter-c {
+    font-size: 270px;
+    font-weight: bold;
+    color: #0096a3;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  
+  /* เอฟเฟกต์เมื่อเอาเมาส์ไปวาง */
+  .letter-c:hover {
+    transform: scale(1.2);
+    color: #00d4ff;
+  }
+  
+  /* เอฟเฟกต์เมื่อคลิก */
+  .letter-c:active {
+    transform: scale(0.9);
+    color: #006f7a;
+  }

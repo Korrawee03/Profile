@@ -1,0 +1,286 @@
+/* Import ฟอนต์ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600;700&family=Prompt:wght@400;500;600&display=swap');
+
+/* ==========================
+   BODY & CONTAINER
+========================== */
+body {
+font-family: 'Georgia', serif;  background: #e6f9ff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+/* ปุ่มพื้นฐาน */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 14px 35px;       /* ↑ จาก 10px 25px */
+  border-radius: 40px;      /* โค้งมากขึ้น */
+  font-weight: bold;
+  font-size: 18px;          /* ↑ จาก 16px */
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* ลูกศร */
+.back-btn span {
+  margin-left: 10px;        /* ↑ เว้นระยะเยอะขึ้นนิด */
+  font-size: 20px;          /* ลูกศรใหญ่ขึ้น */
+  transition: transform 0.3s ease;
+}
+
+/* Hover - ปรับ gradient + ขยับ + shadow */
+.back-btn:hover {
+  background: linear-gradient(135deg, #5aaad6, #3b8bbf);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.back-btn:hover span {
+  transform: translateX(3px);
+}
+
+/* ตำแหน่ง fixed ปุ่มซ้าย/ขวา */
+#home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+#contact-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+/* เมื่อคลิกปุ่ม Home หรือ Contact */
+.back-btn:active {
+  transform: scale(0.95); /* ปุ่มหดเล็กลงเล็กน้อย */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25); /* ลดเงาลง */
+}
+/* กำหนด animation คลิก */
+.back-btn:active {
+  animation: clickEffect 0.2s forwards;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  }
+  50% {
+    transform: scale(0.9);
+    background: linear-gradient(135deg, #5aaad6, #3b8bbf);
+  }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  }
+}
+
+/* ==========================
+   MAIN TITLE
+========================== */
+.main-title {
+font-family: 'Georgia', serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: #1e90ff;
+  text-align: center;
+  margin-top: 60px;
+  text-shadow: 0 2px 6px rgba(30,144,255,0.5);
+  animation: titleBounce 2s ease-in-out infinite, titleGlow 3s ease-in-out infinite alternate;
+}
+
+/* MAIN TITLE ANIMATION */
+@keyframes titleBounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-4px); }
+  50% { transform: translateY(-8px); }
+  75% { transform: translateY(-4px); }
+}
+
+@keyframes titleGlow {
+  0%,100% { text-shadow: 0 2px 6px rgba(30,144,255,0.5), 0 0 5px rgba(0,191,255,0.3); }
+  50% { text-shadow: 0 2px 12px rgba(30,144,255,0.8), 0 0 10px rgba(0,191,255,0.6); }
+}
+
+/* Responsive MAIN TITLE */
+@media (max-width: 768px) { .main-title { font-size: 32px; } }
+@media (max-width: 480px) { .main-title { font-size: 28px; } }
+
+/* ==========================
+   SUBTITLE
+========================== */
+.subtitle {
+font-family: 'Georgia', serif;
+  background: #5daee7;
+  color: white;
+  font-size: 22px;
+  padding: 10px 25px;
+  border-radius: 25px;
+  display: inline-block;
+  margin: 15px 0 30px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) { .subtitle { font-size: 20px; padding: 8px 20px; } }
+@media (max-width: 480px) { .subtitle { font-size: 18px; padding: 6px 15px; } }
+
+/* ==========================
+   EDUCATION CONTAINER
+========================== */
+.education {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  perspective: 1000px;
+
+  margin-top:  100px;  /* ✅ เพิ่มระยะห่างจากหัวข้อ */
+}
+
+/* ==========================
+   EDU ITEM
+========================== */
+.edu-item {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 15px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+/* HALO รอบ edu-item */
+.edu-item::before {
+  content: '';
+  position: absolute;
+  top: -15px; left: -15px; right: -15px; bottom: -15px;
+  border-radius: 50%;
+  border: 2px solid rgba(93,174,231,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  animation: rotateHalo 4s linear infinite;
+}
+
+@keyframes rotateHalo {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* HOVER EFFECT EDU ITEM */
+.edu-item:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(93,174,231,0.6),  /* glow รอบนอก */
+    inset 0 0 15px rgba(255,255,255,0.2); /* แสงด้านใน */
+}
+
+.edu-item:hover::before { opacity: 1; }
+
+/* ==========================
+   IMAGE IN EDU ITEM
+========================== */
+.edu-item img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+  animation: floatBubble 4s ease-in-out infinite, glowImg 6s linear infinite;
+  cursor: pointer;
+}
+
+/* FLOAT + GLOW ANIMATION */
+@keyframes floatBubble {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glowImg {
+  0% { box-shadow: 0 0 10px rgba(93,174,231,0.3); }
+  50% { box-shadow: 0 0 20px rgba(93,174,231,0.6); }
+  100% { box-shadow: 0 0 10px rgba(93,174,231,0.3); }
+}
+
+/* CLICK EFFECT */
+.edu-item img:active {
+  animation: clickEffect 0.3s ease forwards;
+}
+
+@keyframes clickEffect {
+  0% { transform: scale(1.05) translateY(-8px); }
+  50% { transform: scale(0.95) translateY(0); }
+  100% { transform: scale(1.05) translateY(-8px); }
+}
+
+/* HOVER IMAGE */
+.edu-item img:hover {
+  transform: scale(1.08) rotate(2deg);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.35),
+    0 0 20px rgba(93,174,231,0.5),
+    inset 0 0 10px rgba(255,255,255,0.1);
+  filter: brightness(1.2);
+}
+
+/* ==========================
+   TEXT IN EDU ITEM
+========================== */
+.edu-item p {
+font-family: 'Georgia', serif;
+  font-size: 20px;
+  color: #1e90ff;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  animation: textBounce 2s ease-in-out infinite;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* TEXT BOUNCE */
+@keyframes textBounce {
+  0%,100% { transform: translateY(0); }
+  25% { transform: translateY(-3px); }
+  50% { transform: translateY(-6px); }
+  75% { transform: translateY(-3px); }
+}
+
+/* HOVER TEXT GLOW */
+.edu-item p:hover {
+  color: #00bfff;
+  text-shadow: 0 0 5px #00bfff, 0 0 10px rgba(0,191,255,0.5);
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media (max-width: 768px) {
+  .edu-item img { width: 150px; height: 150px; }
+  .edu-item p { font-size: 18px; }
+  .education { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .edu-item img { width: 130px; height: 130px; }
+  .edu-item p { font-size: 16px; }
+  .education { gap: 15px; }
+}

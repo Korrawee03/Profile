@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: white;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  padding: 20px;
+}
+
+/* ปุ่ม Back */
+.back-btn {
+  display: inline-block;
+  background: #7dd1f7;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border: 2px solid #5cbbe6;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.back-btn .arrow {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+/* หัวข้อ */
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #6bbcf2, #3f82d4);
+  display: inline-block;
+  padding: 5px 40px;
+  margin: 30px 0;
+  border-radius: 6px;
+}
+
+/* Contact Box */
+.contact-box {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  z-index: 10; /* ให้อยู่เหนือรูป */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label, .value {
+  background: #6ec9f5;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid #3f82d4;
+  flex: 1;
+}
+
+.label {
+  text-align: left;
+  margin-right: 10px;
+}
+
+.value {
+  text-align: center;
+}
+
+/* รูปพื้นหลัง */
+.main-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px; /* ปรับขนาดได้ */
+  z-index: 1;   /* อยู่ด้านหลัง */
+}
