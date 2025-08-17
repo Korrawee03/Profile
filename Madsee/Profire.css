@@ -1,43 +1,89 @@
+/* สำหรับทุกหน้าที่ต้องการให้ card อยู่กลาง */
 body {
   font-family: "Tahoma", sans-serif;
   background: #fff;
   margin: 0;
   padding: 10px;
+
+  display: flex;               /* ใช้ flex จัดกลาง */
+  justify-content: center;     /* จัดกลางแนวนอน */
+  align-items: center;         /* จัดกลางแนวตั้ง */
+  min-height: 100vh;           /* ให้ body เต็มความสูงจอ */
+  flex-direction: column;      /* ให้เรียงบนลงล่าง */
 }
 
+/* ปุ่มพื้นฐาน */
 .back-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #7ebce6, #5aaad6); /* ไล่สีสวย */
-  color: #fff;
-  padding: 10px 25px;
-  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 14px 35px;       /* ↑ จาก 10px 25px */
+  border-radius: 40px;      /* โค้งมากขึ้น */
   font-weight: bold;
-  font-size: 16px;
-  text-transform: uppercase; /* ตัวอักษรใหญ่ */
-  letter-spacing: 1px;
+  font-size: 18px;          /* ↑ จาก 16px */
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
   cursor: pointer;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  color: #fff;
+  background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.18);
   transition: all 0.3s ease;
-  text-decoration: none; /* ลบเส้นใต้ลิงก์ */
+  z-index: 1000;
 }
 
-/* Hover - ขยับ + เงาเด่นขึ้น + ไล่สีเข้ม */
+/* ลูกศร */
+.back-btn span {
+  margin-left: 10px;        /* ↑ เว้นระยะเยอะขึ้นนิด */
+  font-size: 20px;          /* ลูกศรใหญ่ขึ้น */
+  transition: transform 0.3s ease;
+}
+
+/* Hover - ปรับ gradient + ขยับ + shadow */
 .back-btn:hover {
   background: linear-gradient(135deg, #5aaad6, #3b8bbf);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* arrow ขยับเมื่อ hover */
-.back-btn span {
-  margin-right: 8px;
-  display: inline-block;
-  transition: transform 0.3s ease;
+.back-btn:hover span {
+  transform: translateX(3px);
 }
 
-.back-btn:hover span {
-  transform: translateX(-3px); /* arrow ขยับไปซ้ายเล็กน้อย */
+/* ตำแหน่ง fixed ปุ่มซ้าย/ขวา */
+#home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+#contact-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+/* เมื่อคลิกปุ่ม Home หรือ Contact */
+.back-btn:active {
+  transform: scale(0.95); /* ปุ่มหดเล็กลงเล็กน้อย */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25); /* ลดเงาลง */
+}
+/* กำหนด animation คลิก */
+.back-btn:active {
+  animation: clickEffect 0.2s forwards;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  }
+  50% {
+    transform: scale(0.9);
+    background: linear-gradient(135deg, #5aaad6, #3b8bbf);
+  }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  }
 }
 
 
@@ -163,22 +209,20 @@ body {
 }
 
 
-/* ข้อมูล */
 .profile-info {
   text-align: center;
   background: #ffffffcc;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-top: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* ✅ เพิ่ม transition */
 }
 
-.profile-info p {
-  font-size: 16px;
-  margin: 6px 0;
-  line-height: 1.5;
-  color: #444;
+.profile-info:hover {
+  transform: translateY(-5px) scale(1.02);               /* ✅ เด้งเบาๆ */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);                /* ✅ เงาลึกขึ้น */
 }
+
 
 .profile-info strong {
   color: #0096a3;
@@ -237,4 +281,3 @@ body {
 .blue-box.bottom-right {
   animation: floatBox 6s ease-in-out infinite reverse;
 }
-
