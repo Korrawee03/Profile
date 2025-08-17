@@ -1,85 +1,213 @@
+:root {
+  --blue-light: #7CC7F0;   /* ฟ้าอ่อน */
+  --blue-dark:  #2E6FBF;   /* ฟ้าเข้ม */
+}
+
 body {
   margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #fff;
   font-family: 'Georgia', serif;
-  background: white;
-  text-align: center;
-}
-
-.container {
-  position: relative;
-  padding: 20px;
-}
-
-/* ปุ่ม Back */
-.back-btn {
-  display: inline-block;
-  background: #7dd1f7;
-  padding: 8px 18px;
-  border-radius: 30px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  border: 2px solid #5cbbe6;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-}
-.back-btn .arrow {
-  font-size: 18px;
-  margin-right: 6px;
-}
-
-/* หัวข้อ */
-.title {
-  font-size: 48px;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(to right, #6bbcf2, #3f82d4);
-  display: inline-block;
-  padding: 5px 40px;
-  margin: 30px 0;
-  border-radius: 6px;
-}
-
-/* Contact Box */
-.contact-box {
-  width: 70%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  position: relative;
-  z-index: 10; /* ให้อยู่เหนือรูป */
+  align-items: center;       
+  min-height: 100vh;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.label, .value {
-  background: #6ec9f5;
-  color: white;
-  font-size: 22px;
+/* ปุ่มพื้นฐาน */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 14px 35px;       /* ↑ จาก 10px 25px */
+  border-radius: 40px;      /* โค้งมากขึ้น */
   font-weight: bold;
-  padding: 10px 20px;
-  border: 2px solid #3f82d4;
-  flex: 1;
+  font-size: 18px;          /* ↑ จาก 16px */
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
 
-.label {
-  text-align: left;
-  margin-right: 10px;
+/* ลูกศร */
+.back-btn span {
+  margin-left: 10px;        /* ↑ เว้นระยะเยอะขึ้นนิด */
+  font-size: 20px;          /* ลูกศรใหญ่ขึ้น */
+  transition: transform 0.3s ease;
 }
 
-.value {
-  text-align: center;
+/* Hover - ปรับ gradient + ขยับ + shadow */
+.back-btn:hover {
+  background: linear-gradient(135deg, #5aaad6, #3b8bbf);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* รูปพื้นหลัง */
-.main-image {
+.back-btn:hover span {
+  transform: translateX(3px);
+}
+
+/* ตำแหน่ง fixed ปุ่มซ้าย/ขวา */
+#home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+#contact-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+/* เมื่อคลิกปุ่ม Home หรือ Contact */
+.back-btn:active {
+  transform: scale(0.95); /* ปุ่มหดเล็กลงเล็กน้อย */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25); /* ลดเงาลง */
+}
+/* กำหนด animation คลิก */
+.back-btn:active {
+  animation: clickEffect 0.2s forwards;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  }
+  50% {
+    transform: scale(0.9);
+    background: linear-gradient(135deg, #5aaad6, #3b8bbf);
+  }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #7ebce6, #5aaad6);
+  }
+}
+
+
+/* กล่องหัวข้อ Contact */
+.title-box {
+  display: inline-block;
+  margin: 60px auto 40px auto;
+  padding: 18px 55px;
+  border-radius: 60px;
+  background: linear-gradient(135deg, #6ec1e4, #1e90ff);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1.2s ease-out, floatBox 4s ease-in-out infinite;
+}
+
+/* แสงวิ่ง */
+.title-box::before {
+  content: "";
   position: absolute;
   top: 0;
-  right: 0;
-  width: 250px; /* ปรับขนาดได้ */
-  z-index: 1;   /* อยู่ด้านหลัง */
+  left: -150%;
+  width: 120%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
 }
+
+.title-box:hover::before {
+  animation: shineMove 1.2s forwards;
+}
+
+/* ตัวอักษร Contact */
+.title-box .title {
+  font-family: 'Georgia', serif; 
+  font-size: clamp(36px, 6vw, 58px);
+  font-weight: 900;
+  text-transform: uppercase;
+
+  /* ✅ ทำ gradient ที่ตัวอักษร */
+  background: linear-gradient(to right, #ffffff, #d4e9ff, #ffffff);
+  -webkit-background-clip: text;        /* Safari, Chrome */
+  -webkit-text-fill-color: transparent; /* สำคัญ ต้องใส่คู่กัน */
+  background-clip: text;                /* เผื่อ Firefox */
+  color: transparent;
+
+  letter-spacing: 2.5px;
+
+  /* ✅ เพิ่มเงาเรือง ๆ */
+  text-shadow: 0 0 12px rgba(255,255,255,0.7), 
+               0 0 24px #6ec1e4;
+
+  margin: 0;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+/* เอฟเฟกต์ text glow */
+@keyframes glowText {
+  0%   { text-shadow: 0 0 8px #ffffff, 0 0 12px #6ec1e4; }
+  100% { text-shadow: 0 0 18px #ffffff, 0 0 30px #1e90ff; }
+}
+
+/* เอฟเฟกต์ float */
+@keyframes floatBox {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* เอฟเฟกต์ shine */
+@keyframes shineMove {
+  100% { left: 150%; }
+}
+
+/* เอฟเฟกต์ fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* กล่อง Contact */
+.contact-grid {
+  width: min(95%, 850px);   /* ✅ ขยายกว้างขึ้น */
+  margin: 60px auto;        /* ✅ เว้นบน-ล่างให้โปร่งขึ้น */
+}
+
+/* แถว */
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;          /* ✅ ระยะห่างระหว่างปุ่มมากขึ้น */
+  gap: 20px;
+}
+
+/* ปุ่มแต่ละ cell */
+.cell {
+  flex: 1;
+  padding: 20px 28px;      /* ✅ ขยายกล่องใหญ่ขึ้น */
+  background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+  border-left: 5px solid #274d99;  /* ✅ ขอบเข้มขึ้น */
+  border-right: 5px solid #274d99;
+  font-size: clamp(20px, 2.8vw, 28px);  /* ✅ ตัวอักษรใหญ่ชัด */
+  font-weight: 800;        /* ✅ หนาขึ้น */
+  color: #fff;
+  text-align: center;
+  border-radius: 16px;     /* ✅ ขอบโค้งมากขึ้น */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* ✅ เงาสวย */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* เอฟเฟกต์ Hover */
+.cell:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #7cc7f0, #2e6fbf);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+.link-cell {
+  text-decoration: none;
+  color: #fff;   /* ใช้สีเหมือนเดิม */
+}
+
+.link-cell:hover {
+  text-decoration: underline; /* เพิ่มขีดเส้นใต้เวลา hover */
+}
+
